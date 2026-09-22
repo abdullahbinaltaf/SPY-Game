@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The SPY Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Auth Screen -->
+        <div id="auth-screen" class="screen active">
+            <h1>The SPY Game</h1>
+            <div class="action-card">
+                <h3>Login / Signup</h3>
+                <input type="email" id="auth-email" placeholder="Email" required>
+                <input type="password" id="auth-password" placeholder="Password" required>
+                <button id="btn-login" class="primary">Log In</button>
+                <button id="btn-signup" class="secondary">Sign Up</button>
+            </div>
+            <div id="auth-error" class="error"></div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="home-screen" class="screen">
+            <h1>The SPY Game</h1>
+            <div class="profile-card">
+                <p>Logged in as: <strong id="user-email"></strong></p>
+                <p>Wins: <span id="user-wins" class="stat">0</span> | Losses: <span id="user-losses" class="stat">0</span></p>
+                <button id="btn-logout" class="small-btn">Log Out</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>Create Game</h3>
+                <input type="text" id="category-input" placeholder="Category (optional, or 'Random')">
+                <button id="btn-create" class="primary">Create Room</button>
+            </div>
+            
+            <div class="action-card">
+                <h3>Join Game</h3>
+                <input type="text" id="room-code-input" placeholder="Room Code" style="text-transform: uppercase;">
+                <button id="btn-join" class="secondary">Join Room</button>
+            </div>
+            <div id="home-error" class="error"></div>
+        </div>
+
+        <!-- Lobby Screen -->
+        <div id="lobby-screen" class="screen">
+            <h2>Room: <span id="lobby-room-code"></span></h2>
+            <p>Category: <strong id="lobby-category"></strong></p>
+            <div class="players-list">
+                <h3>Players (<span id="player-count">0</span>)</h3>
+                <ul id="lobby-players"></ul>
+            </div>
+            <p id="waiting-msg">Waiting for host to start...</p>
+            <button id="btn-start" class="primary hidden">Start Game</button>
+            <button id="btn-leave-lobby" class="secondary" style="margin-top:10px;">Leave Room</button>
+        </div>
+
+        <!-- Playing Screen -->
+        <div id="playing-screen" class="screen">
+            <h2>Find the Spy!</h2>
+            <div class="role-card" id="role-display"></div>
+            <div class="timer">
+                Time Remaining: <span id="time-left">05:00</span>
+            </div>
+            <div class="players-list">
+                <h3>Players</h3>
+                <ul id="playing-players"></ul>
+            </div>
+            <button id="btn-start-voting" class="primary hidden">Time's Up - Start Voting</button>
+        </div>
+
+        <!-- Voting Screen -->
+        <div id="voting-screen" class="screen">
+            <h2>Who is the Spy?</h2>
+            <p>Select a player to vote:</p>
+            <div id="voting-options" class="voting-grid"></div>
+            <div id="voting-status"></div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="screen">
+            <h2>Game Over</h2>
+            <div id="spies-reveal" class="reveal-card"></div>
+            <div id="voting-results-list" class="results-list"></div>
+            <button id="btn-restart" class="primary hidden">Play Again</button>
+            <button id="btn-leave-result" class="secondary">Leave Room</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
