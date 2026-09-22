@@ -15,7 +15,7 @@ async def generate_word_and_category(category: str):
     if not category or category.strip().lower() == "random":
         prompt = "Generate a random category and a specific secret word for a social deduction game like 'Spyfall'. Respond ONLY with a JSON object in this format: {\"category\": \"Category Name\", \"word\": \"Secret Word\"}."
     else:
-        prompt = f"Generate a specific secret word for the category '{category}' for a social deduction game like 'Spyfall'. Respond ONLY with a JSON object in this format: {\"category\": \"{category}\", \"word\": \"Secret Word\"}."
+        prompt = f"Generate a specific secret word for the category '{category}' for a social deduction game like 'Spyfall'. Respond ONLY with a JSON object in this format: {{\"category\": \"{category}\", \"word\": \"Secret Word\"}}."
     
     try:
         response = await client.chat.completions.create(
