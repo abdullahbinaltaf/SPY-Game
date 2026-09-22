@@ -1,0 +1,11 @@
+# Ignore environment variables and secrets
+backend/.env
+
+# Python caching
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node.js
+node_modules/
